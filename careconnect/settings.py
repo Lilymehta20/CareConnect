@@ -3,9 +3,22 @@ from pathlib import Path
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = "dev-only-change-this-secret-key"
-DEBUG = True
-ALLOWED_HOSTS = []
+SECRET_KEY = os.getenv(
+    "DJANGO_SECRET_KEY" ,
+    "dev-only-change-this-secret-key"
+)
+DEBUG =  os.getenv("DEBUG", "False").lower() == "true"
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    ".vercel.app",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.vercel.app",
+]
+
+
 INSTALLED_APPS = [
     "django.contrib.admin", "django.contrib.auth", "django.contrib.contenttypes",
     "django.contrib.sessions", "django.contrib.messages", "django.contrib.staticfiles",
@@ -63,6 +76,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Asia/Kolkata"
 USE_I18N = True
+
 USE_TZ = True
 STATIC_URL = "static/"
 MEDIA_URL = "media/"
