@@ -7,7 +7,7 @@ SECRET_KEY = os.getenv(
     "DJANGO_SECRET_KEY" ,
     "dev-only-change-this-secret-key"
 )
-DEBUG =  os.getenv("DEBUG", "False").lower() == "true"
+DEBUG = os.getenv("DEBUG", "False" if os.getenv("VERCEL") else "True").lower() == "true"
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
@@ -78,7 +78,7 @@ TIME_ZONE = "Asia/Kolkata"
 USE_I18N = True
 
 USE_TZ = True
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

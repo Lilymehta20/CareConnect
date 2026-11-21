@@ -28,6 +28,8 @@ python manage.py runserver
 ```
 Open http://127.0.0.1:8000/
 
+Local development enables Django's debug mode by default so `runserver` serves the admin static files. On Vercel it defaults to off; set the `DEBUG` environment variable explicitly to override either default.
+
 ## Supabase database setup
 
 CareConnect uses Supabase PostgreSQL when `SUPABASE_DB_URL` or `DATABASE_URL` is set. Otherwise, it uses SQLite.
