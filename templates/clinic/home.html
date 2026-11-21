@@ -1,0 +1,3 @@
+{% extends "clinic/base.html" %}{% block content %}
+<section class="hero"><h1>Healthcare, connected.</h1><p>Find verified doctors, request appointments and keep your health information organized.</p><a class="btn" href="/doctors/">Find a doctor</a> <a class="btn" href="/register/">Create account</a></section>
+<h2>Featured doctors</h2><div class="grid">{% for d in doctors %}<article class="card"><h3>Dr. {{ d.user.get_full_name|default:d.user.username }}</h3><p>{{ d.specialization }}</p><p class="muted">{{ d.qualification }} · {{ d.experience_years }} years experience</p><p>{{ d.clinic_name }}</p></article>{% empty %}<p>No verified doctors yet. Add a doctor account and verify it through Admin.</p>{% endfor %}</div>{% endblock %}
